@@ -5,10 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -20,7 +23,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,7 +39,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             SlideshowTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    ImageBox(modifier = Modifier)
+                    ImageBox(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -43,15 +48,29 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ImageBox(modifier: Modifier = Modifier){
-    val numOfImages = 6
+    val numOfImages = 2
     var imageNum by remember { mutableStateOf(1) }
-    Box(){
+    var imageResource = when (imageNum) {
+        1 -> R.drawable.thebatman
+        2 -> R.drawable.bvsposter
+        else -> R.drawable.thebatman
+    }
+    Column(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
         Image(
-            painterResource(imageNum),
-            contentDescription = ""
+            painterResource(imageResource),
+            contentDescription = "",
+            modifier = Modifier.width(500.dp).height(500.dp),
+            contentScale = ContentScale.Fit,
         )
         Spacer(modifier = Modifier.height(16.dp))
-        Row {
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxWidth()
+        ) {
             Button(onClick = {imageNum = changeImageNum(false, imageNum, numOfImages) }){
                 Text(stringResource(R.string.back))
             }
