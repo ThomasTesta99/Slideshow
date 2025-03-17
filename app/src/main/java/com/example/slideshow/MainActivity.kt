@@ -15,9 +15,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,6 +31,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.slideshow.ui.theme.SlideshowTheme
@@ -55,6 +60,9 @@ fun ImageBox(modifier: Modifier = Modifier){
         2 -> R.drawable.bvsposter
         else -> R.drawable.thebatman
     }
+
+    var inputText by remember { mutableStateOf(" ") }
+
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -79,6 +87,31 @@ fun ImageBox(modifier: Modifier = Modifier){
                 Text(stringResource(R.string.next))
             }
         }
+        Spacer(modifier = Modifier.height(16.dp))
+        TextField(
+            value = inputText,
+            onValueChange = {inputText = it},
+            label = {Text(stringResource(R.string.image_num))},
+            keyboardOptions = KeyboardOptions.Default.copy(
+                keyboardType = KeyboardType.Number,
+                imeAction = ImeAction.Done,
+            ),
+            keyboardActions = KeyboardActions(
+                onDone = {imageNum = changeImageNumFromText(inputText, numOfImages) }
+            ),
+            singleLine = true,
+
+        )
+    }
+}
+
+private fun changeImageNumFromText(imageNum: String, numOfImages: Int): Int{
+    val num = imageNum.toIntOrNull()
+    if(num != null && num > 0 && num <= numOfImages){
+        return num
+    }
+    else {
+        return 1
     }
 }
 
