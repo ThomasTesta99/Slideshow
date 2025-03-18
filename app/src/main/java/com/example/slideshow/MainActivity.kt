@@ -29,6 +29,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -61,7 +62,7 @@ fun ImageBox(modifier: Modifier = Modifier){
         else -> R.drawable.thebatman
     }
 
-    var inputText by remember { mutableStateOf(" ") }
+    var inputText by remember { mutableStateOf("") }
 
     Column(
         modifier = modifier.fillMaxSize(),
@@ -97,10 +98,13 @@ fun ImageBox(modifier: Modifier = Modifier){
                 imeAction = ImeAction.Done,
             ),
             keyboardActions = KeyboardActions(
-                onDone = {imageNum = changeImageNumFromText(inputText, numOfImages) }
+                onDone = {
+                    imageNum = changeImageNumFromText(inputText, numOfImages)
+
+                }
+
             ),
             singleLine = true,
-
         )
     }
 }
