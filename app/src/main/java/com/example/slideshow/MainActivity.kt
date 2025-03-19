@@ -34,6 +34,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.slideshow.ui.theme.SlideshowTheme
@@ -87,8 +88,11 @@ fun ImageBox(modifier: Modifier = Modifier){
             modifier = Modifier.width(500.dp).height(500.dp),
             contentScale = ContentScale.Fit,
         )
+        Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = stringResource(imageDescription)
+            text = stringResource(imageDescription),
+            modifier = Modifier.width(400.dp),
+            textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(16.dp))
         Row(
