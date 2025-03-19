@@ -3,4 +3,9 @@
     <string name="back">Back</string>
     <string name="next">Next</string>
     <string name="image_num">Enter image number</string>
+    <string name="theBatman">A young Batman, haunted by his family\'s past, must investigate a series of crimes committed by the Riddler, uncovering a web of corruption in Gotham City.</string>
+    <string name="bvs">A battle of titans ensues as Batman, fearing Superman\'s power, seeks to end his reign on Earth, while Lex Luthor manipulates events to pit the two heroes against each other.</string>
+    <string name="infinityWar">Thanos, a powerful intergalactic warlord, seeks to collect all six Infinity Stones to wipe out half of the universe\'s life, leading to a cosmic battle where the Avengers and their allies face devastating consequences. </string>
+    <string name="endgame">the surviving Avengers and their allies must assemble once more to reverse Thanos\'s actions, which erased half of all life in the universe, and undo the chaos he created, no matter the cost. </string>
+    <string name="wandavision">Wanda, struggling with grief after Vision\'s death, uses her powers to create a reality where she can live with him in a peaceful, controlled environment.</string>
 </resources>

@@ -54,12 +54,24 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ImageBox(modifier: Modifier = Modifier){
-    val numOfImages = 2
+    val numOfImages = 5
     var imageNum by remember { mutableStateOf(1) }
     var imageResource = when (imageNum) {
         1 -> R.drawable.thebatman
         2 -> R.drawable.bvsposter
+        3 -> R.drawable.infinitywaraposter
+        4 -> R.drawable.endgameposter
+        5 -> R.drawable.wandavisionposter
         else -> R.drawable.thebatman
+    }
+
+    var imageDescription = when (imageNum){
+        1 -> R.string.theBatman
+        2 -> R.string.bvs
+        3 -> R.string.infinityWar
+        4 -> R.string.endgame
+        5 -> R.string.wandavision
+        else -> R.string.theBatman
     }
 
     var inputText by remember { mutableStateOf("") }
@@ -74,6 +86,9 @@ fun ImageBox(modifier: Modifier = Modifier){
             contentDescription = "",
             modifier = Modifier.width(500.dp).height(500.dp),
             contentScale = ContentScale.Fit,
+        )
+        Text(
+            text = stringResource(imageDescription)
         )
         Spacer(modifier = Modifier.height(16.dp))
         Row(
