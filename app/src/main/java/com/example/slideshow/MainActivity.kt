@@ -65,7 +65,7 @@ fun ImageBox(modifier: Modifier = Modifier){
         5 -> R.drawable.wandavisionposter
         else -> R.drawable.thebatman
     }
-
+    val keyboardController = LocalSoftwareKeyboardController.current
     var imageDescription = when (imageNum){
         1 -> R.string.theBatman
         2 -> R.string.bvs
@@ -119,7 +119,7 @@ fun ImageBox(modifier: Modifier = Modifier){
             keyboardActions = KeyboardActions(
                 onDone = {
                     imageNum = changeImageNumFromText(inputText, numOfImages)
-
+                    keyboardController?.hide()
                 }
 
             ),
